@@ -1,0 +1,17 @@
+1. Functional Requirements
+    - Read phone sensor data
+    - Read GPS data
+    - Take Photos
+    - Record Video
+    - Record Audio
+    - Differentiate between animal/person/vehicle
+    - Connect and communicate with base station over tcp/ip
+    - Base station does not control phones, they act independently and send photos/events/e.t.c back to it
+    - The phones communicate directly with eachother for tip/queue
+    - Tip/queue works between at least 5 phones
+    - Tip/queue between phones MUST work at 25 meters, but 100 meters is desired
+    - Detect if phone is moved from it's position, and react (50 meter "fence")
+    - Configuration is done on the phones
+    - API/connection to ESRI on base station
+    - Capability for multiple groups of phones (5 at one location, 5 at a second location)
+    - "Master"/"Base Station" Provides a geophysical display (ESRI)
