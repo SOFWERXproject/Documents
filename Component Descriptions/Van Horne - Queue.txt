@@ -1,0 +1,42 @@
+- Receive triggers
+- Receive commands
+
+- Relay triggers
+- Match triggers to configured commands
+- Perform commands
+
+INPUTS:
+    Triggers
+    Commands
+
+
+        TRIGGER
+- Need timestamp
+- Need source device
+- Need trigger type
+- Need source sensor
+- geolocation?
+- sensor reading?
+
+long    timestamp
+int     Source ID
+        Trigger Type
+        Sensor
+        Sensor Data
+
+
+        COMMAND
+- Timestamp
+- Need source
+- Need target (or All)
+- Need command type
+- command data          (format depends on type)
+
+long    Timestamp
+int     Source ID
+int     Target ID (or all)
+byte    flags
+        - Acknowledgement Requested
+short   Type
+int     Data Length
+byte[]  [Data]

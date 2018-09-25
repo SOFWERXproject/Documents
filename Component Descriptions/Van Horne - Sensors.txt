@@ -1,0 +1,173 @@
+Sensors
+    android.hardware.SensorManager
+        Sensor Types    
+            All
+            Accelerometer
+            Accelerometer uncalibrated
+            Ambient temperature
+            Game rotation vector
+            Geomagnetic rotation vector
+            Gravity
+            Gyroscope
+            Gyroscope uncalibrated
+            Heart beat
+            Heart rate
+            Light
+            Linear acceleration
+            Low latency offbody detect
+            Magnetic field
+            Magnetic field uncalibrated
+            Motion detect
+            Orientation
+            Pose 6DOF
+            Pressure
+            Proximity
+            Relative humidity
+            Rotation vector
+            Significant motion
+            Stationary detect
+            Step counter
+            Step detector
+            Temperature
+            TYPE_DEVICE_PRIVATE_BASE    ? - Needs testing
+        Sensor Information
+            Is default sensor (of it's type)
+            Delay
+                Fastest
+                Game
+                Normal
+                UI
+            Accuracy
+                High
+                Low
+                Medium
+            >maxReportLatency
+            Unreliable
+            No contact
+            
+            FIFO max event count
+            FIFO reserved event count
+            Highest direct report rate level
+                Stop
+                Normal
+                Fast
+                Very Fast
+            ID
+            Max delay
+            Max range
+            Min delay
+            Name
+            Power
+            Reporting Mode
+            Resolution
+            Type
+            Vendor
+            Version
+            Has additional info?
+            Supports direct channel?
+                Memory file
+                Hardware buffer
+            Is dynamic?
+            Is wake up sensor?
+            Reporting mode
+                Continuous
+                On Change
+                One Shot
+                Special Trigger
+        SensorAdditionalInfo:
+            TYPE_FRAME_BEGIN
+            TYPE_FRAME_END
+            TYPE_INTERNAL_TEMPERATURE
+            TYPE_SAMPLING
+            TYPE_SENSOR_PLACEMENT
+            TYPE_UNTRACKED_DELAY            IMPORTANT !
+            TYPE_VEC3_CALIBRATION
+    
+    android.media.AudioRecord
+        Microphones
+            mono / stereo
+            samplerate
+            
+    android.hardware.camera2    > https://developer.android.com/reference/android/hardware/camera2/package-summary
+        hardware.camera2 [Images and Video]
+        
+        imageReader = android.media.ImageReader.newInstance();
+        imageSurface = imageReader.getSurface();
+        captureSession = android.hardware.camera2.createCaptureSession(imageSurface);
+        image = imageReader.acquireLatestImage();
+        planes = image.getPlanes();
+        for each plane in planes;
+            byteBuffer = plane.getBuffer();
+    
+    android.location.LocationManager / Google Location Services API
+        GPS...
+        Location
+        Time
+        NMEA messages or data?
+        GNSS
+            Model name
+            Year of hardware
+            -GnssStatus
+                Sattelite count
+                (Satellite) Azimuth
+                (Satellite) Carrier frequency
+                (Satellite) Carrier-to-noise at satellite in dB-Hz
+                (Satellite) Constellation type
+                (Satellite) Elevation
+                (Satellite) ID
+                (Satellite) Has almanac data
+                (Satellite) Has carrier frequency
+                (Satellite) Has ephemeris data
+                (Satellite) Used in fix
+                
+            
+    
+    android.os.BatteryManager ?
+        Battery Voltage
+        Battery Power nWh
+        Battery Temperature
+        Charge/Discharge Current
+
+
+
+Public interface requirements:
+    Get list of available sensors (Include sensor type?)
+    Get sensor attributes         (Hardware info, capabilities, data format. Information available for the sensor that can't/won't change)
+    Configure sensor
+    Activate sensor
+    Deactivate sensor
+    Get sensor state              (Running, raw sample period? jitter, , accuracy)
+    Get sensor configuration
+    Connect Trigger
+        Trigger created with reference to sensor?
+        Does trigger request data, or does sensor push it?
+        Data structure:
+            Sensor ID
+            Accuracy
+            Timestamp
+            DataLength
+            [ByteBuffer]
+    Connect Recorder
+        Is sensor or recorder responsible for data format?
+            - Sensor    = Generic recorder
+            - Recorder  = Different recorders for different sensors
+
+Sensor Sampling Types:
+    Continuous
+    On Change
+    One Shot
+    Special Trigger
+
+
+Sensor data output:
+    - Timestamp
+    - Accuracy
+    - Sensor
+    - Sensor data
+        Magnetometer / Accelerometer / Light / ... (android.hardware.SensorManager)
+            float[]
+        Microphones
+            int[]
+        Camera (Photo/Video)
+            ??? - ByteArray, android.graphics.Surface[Texture]?
+
