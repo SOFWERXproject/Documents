@@ -1,0 +1,12 @@
+Data Recorder Interface
+public interface DataRecorderInterface {
+private void data_record(inputs from Que/Sensor reader);
+// A method for each sensor will be created utilizing naming convention xxx_record(); (i.e. 
+// magnetometer_record(); audio_record(); etc.) this method will compile the data for each sensor and // package it for sending. 
+private boolean data_transfer (inputs from data_record); 
+// Compresses and stores data from data_record and sends package to Base Station Comm
+// boolean return value of 1 implies successful transmission, 0 passes info to stack
+Stack data_storage = new Stack();
+// In the event that data can’t be sent via the Base Station Comm immediately, (due to comm outage or // other issues) this method will store the data to be sent later. Stack will utilize a first in last out
+// storage mechanism (i.e. most recent data is highest priority). 
+}
