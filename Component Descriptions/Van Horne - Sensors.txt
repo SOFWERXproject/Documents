@@ -159,10 +159,14 @@ Sensor Sampling Types:
     Special Trigger
 
 
-Sensor data output:
-    - Timestamp
-    - Accuracy
-    - Sensor
+sensor.addSensorListener(trigger);
+
+trigger.onSensorEvent(SensorData data)
+
+SensorData
+    long        Timestamp
+    int         Accuracy
+    PlugSensor  sensor
     - Sensor data
         Magnetometer / Accelerometer / Light / ... (android.hardware.SensorManager)
             float[]
