@@ -1,0 +1,41 @@
+
+Basic usage format:
+
+    @Queue.Command(index)
+    public static returnType methodName(Arguments) {
+        // Method body
+    }
+
+
+    
+@Queue.Command(index)
+
+    "index"  is an integer value used to identify the command.  The value must be
+             unique between commands inside of the same class.
+    
+    Only specific classes will be scanned for "Queue.Command" annotations. They
+    should only appear in the main "manager" classes for the different parts of
+    the application.
+
+ 
+
+    The "Queue.Command" annotation must appear immediately before the method
+    that will be executed as the command.
+    
+    The main reasons for defining methods as Queue commands are to make them
+    available to be called over a network connection and/or allow them to be
+    used as reactions to triggers. There are several limitations that should be
+    kept in mind to allow them to function properly for these purposes.
+    
+    - Command methods must be defined as "static" meaning that they are not
+    connected to a specific instance of an object. Devices that send commands
+    over a network cannot directly reference instances on a remote devices.
+    
+    - Return types and arguments must be limited to simple data types, arrays of
+    simple data types, or JSON arrays/objects made up of simple data types.
+    
+    Simple data types include:
+        byte, char, short, int, long, float, double, and boolean
+    
+    "void" is also an acceptable return type.
+

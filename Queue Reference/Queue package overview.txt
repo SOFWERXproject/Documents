@@ -1,0 +1,56 @@
+
+package: Queue
+    public interfaces
+        CommandResponseListener
+    public classes
+        Queue
+        QueueCommand
+        QueueTrigger
+    
+    
+    
+    interface CommandResponseListener
+        void onCommandResponse(Object response, QueueCommand command)
+    
+    
+    
+    class Queue
+        public constants
+            COMMAND_TARGET_*
+                COMMAND_TARGET_NONE     "%NONE%"
+                COMMAND_TARGET_ALL      "%ALL%"
+                COMMAND_TARGET_SELF     "%SELF%"
+            COMMAND_CLASS_*
+                COMMAND_CLASS_MISC       0
+                COMMAND_CLASS_SENSORS    1
+                COMMAND_CLASS_TRIGGERS   2
+                COMMAND_CLASS_MESH_NET   3
+                COMMAND_CLASS_BASE_COMM  4
+            COMMAND_MISC_*
+                COMMAND_MISC_STOP_QUEUE  1
+        
+        public interfaces
+            onStartedListener
+            @command(index)
+        
+        public methods
+            String  getId()
+            void    setStartedListener(onStartedListener listener)
+            boolean isRunning()
+            void    push(Queue.QueueItem item)
+    
+    
+    class QueueCommand extends Queue.QueueItem
+        public constructors
+            QueueCommand(String targetId, int commandClass, int commandId, JSONArray arguments)
+            QueueCommand(ByteBuffer buffer)
+        
+        public methods
+            byte[] toBytes()
+            void setResponseListener(CommandResponseListener listener)
+            void setResponseListener(CommandResponseListener listener, Handler handler)
+    
+    
+    class QueueTrigger extends Queue.QueueItem
+        // WORK IN PROGRESS
+        
