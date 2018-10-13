@@ -31,7 +31,7 @@ package: Queue
         
         public interfaces
             onStartedListener
-            @command(index)
+            @Command(index)
         
         public methods
             String  getId()
